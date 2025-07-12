@@ -1,16 +1,36 @@
 import React from 'react';
 
+const landingStyles = {
+  textAlign: 'center',
+  padding: 20,
+};
+
+const buttonStyles = {
+  background: '#007bff',
+  color: '#fff',
+  border: 'none',
+  borderRadius: 6,
+  padding: '10px 20px',
+  cursor: 'pointer',
+  fontSize: 16,
+  fontWeight: 500,
+  transition: 'background 0.2s',
+};
+
 function LandingPage({ onSignIn }) {
   return (
-    <div style={{ textAlign: 'center', padding: '60px 0' }}>
-      <h2 style={{ fontSize: 36, fontWeight: 700, marginBottom: 18 }}>Turn Printify Products Into Profitable Bundles</h2>
-      <p style={{ fontSize: 20, color: '#64748b', marginBottom: 32 }}>
-        Import products, create smart bundles, and generate copy-paste ready Etsy listings with optimized pricing and tags!
-      </p>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 24 }}>
-        <button onClick={onSignIn} style={{ background: '#3b82f6', color: '#fff', border: 'none', borderRadius: 6, padding: '14px 36px', fontWeight: 600, fontSize: 18, cursor: 'pointer' }}>Get Started</button>
-        <button onClick={onSignIn} style={{ background: '#10b981', color: '#fff', border: 'none', borderRadius: 6, padding: '14px 36px', fontWeight: 600, fontSize: 18, cursor: 'pointer' }}>Try Demo</button>
-      </div>
+    <div style={landingStyles}>
+      <h2 style={{ fontSize: 28, margin: '0 0 16px' }}>Welcome to MyApp</h2>
+      <p style={{ margin: '0 0 20px', fontSize: 16 }}>Sign in to access your dashboard.</p>
+      <button
+        onClick={onSignIn}
+        style={buttonStyles}
+        onMouseOver={(e) => (e.currentTarget.style.background = '#0056b3')}
+        onMouseOut={(e) => (e.currentTarget.style.background = '#007bff')}
+        aria-label="Sign in"
+      >
+        Sign In
+      </button>
     </div>
   );
 }
