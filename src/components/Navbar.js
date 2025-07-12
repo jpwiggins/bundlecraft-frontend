@@ -1,10 +1,50 @@
 import React from 'react';
 
+const navbarStyles = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '16px 32px',
+  background: '#fff',
+  boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+};
+
+const navButtonStyles = {
+  background: '#007bff',
+  color: '#fff',
+  border: 'none',
+  borderRadius: 6,
+  padding: '8px 16px',
+  cursor: 'pointer',
+  fontSize: 14,
+  fontWeight: 500,
+  transition: 'background 0.2s',
+};
+
 function Navbar({ onSignIn }) {
   return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 32px', background: '#fff', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-      <span style={{ fontWeight: 700, fontSize: 22, color: '#3b82f6' }}>BundleCraft</span>
-      <button onClick={onSignIn} style={{ background: '#3b82f6', color: '#fff', border: 'none', borderRadius: 6, padding: '8px 22px', fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Sign In</button>
+    <nav style={navbarStyles}>
+      <h1 style={{ margin: 0, fontSize: 24 }}>MyApp</h1>
+      <div style={{ display: 'flex', gap: 12 }}>
+        <button
+          onClick={() => console.log('Home clicked')}
+          style={navButtonStyles}
+          onMouseOver={(e) => (e.currentTarget.style.background = '#0056b3')}
+          onMouseOut={(e) => (e.currentTarget.style.background = '#007bff')}
+          aria-label="Go to home page"
+        >
+          Home
+        </button>
+        <button
+          onClick={onSignIn}
+          style={navButtonStyles}
+          onMouseOver={(e) => (e.currentTarget.style.background = '#0056b3')}
+          onMouseOut={(e) => (e.currentTarget.style.background = '#007bff')}
+          aria-label="Sign in"
+        >
+          Sign In
+        </button>
+      </div>
     </nav>
   );
 }
