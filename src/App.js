@@ -4,32 +4,16 @@ import AuthPage from './components/AuthPage';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
-
-const appStyles = {
-  fontFamily: 'Segoe UI, Roboto, Arial, sans-serif',
-  background: '#f8fafc',
-  minHeight: '100vh',
-  margin: 0,
-};
-
-const cardStyles = {
-  maxWidth: 600,
-  margin: '40px auto',
-  background: '#fff',
-  borderRadius: 12,
-  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-  padding: 32,
-};
+import './App.css';
 
 function MainApp() {
   const { user, logout } = useAuth();
   const [showSignIn, setShowSignIn] = useState(false);
 
-  // Show dashboard if logged in, sign-in if requested, else landing page
   return (
-    <div style={appStyles}>
+    <div className="app-container">
       <Navbar onSignIn={() => setShowSignIn(true)} />
-      <div style={cardStyles}>
+      <div className="card">
         {!user ? (
           showSignIn ? (
             <AuthPage />
@@ -38,9 +22,9 @@ function MainApp() {
           )
         ) : (
           <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <p style={{ fontWeight: 500 }}>Hello, {user.username}! You are logged in.</p>
-              <button onClick={logout} style={{ background: '#ef4444', color: '#fff', border: 'none', borderRadius: 6, padding: '6px 16px', cursor: 'pointer' }}>Logout</button>
+            <div className="user-header">
+              <p>Hello, {user.username}! You are logged in.</p>
+              <button onClick={logout} className="logout-btn">Logout</button>
             </div>
             <Dashboard />
           </>
