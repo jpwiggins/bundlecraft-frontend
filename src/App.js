@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import AuthPage from './components/AuthPage';
 import Dashboard from './components/Dashboard';
+import Navbar from './components/Navbar';
+import LandingPage from './components/LandingPage';
 
 const appStyles = {
   fontFamily: 'Segoe UI, Roboto, Arial, sans-serif',
@@ -21,12 +23,19 @@ const cardStyles = {
 
 function MainApp() {
   const { user, logout } = useAuth();
+  const [showSignIn, setShowSignIn] = useState(false);
+
+  // Show dashboard if logged in, sign-in if requested, else landing page
   return (
     <div style={appStyles}>
+      <Navbar onSignIn={() => setShowSignIn(true)} />
       <div style={cardStyles}>
-        <h1 style={{ color: '#3b82f6', marginBottom: 24 }}>BundleCraft</h1>
         {!user ? (
-          <AuthPage />
+          showSignIn ? (
+            <AuthPage />
+          ) : (
+            <LandingPage onSignIn={() => setShowSignIn(true)} />
+          )
         ) : (
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
