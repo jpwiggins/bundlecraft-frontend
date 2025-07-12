@@ -1,0 +1,31 @@
+import React, { createContext, useState, useContext } from 'react';
+
+const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [apiKey, setApiKey] = useState('');
+
+  const login = (username, apiKeyInput) => {
+    if (!username || !apiKeyInput) {
+      throw new Error('Username and API key are required');
+    }
+    setUser({ username });
+    setApiKey(apiKeyInput);
+  };
+
+  const logout = () => {
+    setUser(null);
+    setApiKey('');
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, apiKey, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
+}
