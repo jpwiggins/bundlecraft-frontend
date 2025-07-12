@@ -1,4 +1,5 @@
- "name": "bundlecraft-frontend",
+{
+  "name": "bundlecraft-frontend",
   "version": "1.0.0",
   "description": "BundleCraft frontend application",
   "homepage": "https://bundlecraft.netlify.app",
