@@ -1,34 +1,17 @@
 
-  {
-  "name": "bundlecraft-frontend",
+{
+  "name": "my-react-app",
   "version": "1.0.0",
-  "description": "BundleCraft frontend application",
-  "main": "src/App.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "react-scripts start"
+    "eject": "react-scripts eject"
   },
-  "keywords": [
-    "react",
-    "frontend",
-    "saas",
-    "bundlecraft"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0"
   },
   "browserslist": {
     "production": [
