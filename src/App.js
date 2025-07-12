@@ -37,12 +37,13 @@ const logoutButtonStyles = {
   cursor: 'pointer',
   fontSize: 14,
   fontWeight: 500,
-  transition: 'background 0.2s',
+  transition: 'background 0.2s, opacity 0.2s',
 };
 
-const logoutButtonHoverStyles = {
+const logoutButtonDisabledStyles = {
   ...logoutButtonStyles,
-  background: '#dc2626',
+  opacity: 0.7,
+  cursor: 'not-allowed',
 };
 
 function MainApp() {
@@ -51,11 +52,12 @@ function MainApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     setIsLoading(true);
     setError('');
     try {
-      await logout();
+      logout();
+      setShowSignIn(false);
     } catch (err) {
       setError('Failed to log out. Please try again.');
     } finally {
@@ -79,15 +81,16 @@ function MainApp() {
               <p style={{ fontWeight: 500, margin: 0 }}>Hello, {user.username}! You are logged in.</p>
               <button
                 onClick={handleLogout}
-                style={isLoading ? { ...logoutButtonStyles, opacity: 0.7, cursor: 'not-allowed' } : logoutButtonStyles}
-                onMouseOver={(e) => (e.currentTarget.style.background = logoutButtonHoverStyles.background)}
-                onMouseOut={(e) => (e.currentTarget.style.background = logoutButtonStyles.background)}
+                style={isLoading ? logoutButtonDisabledStyles : logoutButtonStyles}
+                onMouseOver={(e) => !isLoading && (e.currentTarget.style.background = '#dc2626')}
+                onMouseOut={(e) => !isLoading && (e.currentTarget.style.background = '#ef4444')}
                 disabled={isLoading}
+                aria-label="Log out"
               >
                 {isLoading ? 'Logging Out...' : 'Logout'}
               </button>
             </div>
-            {error && <p style={{ color: '#ef4444', margin: '10px 0' }}>{error}</p>}
+            {error && <p style={{ color: '#ef4444', margin: '10px 0', textAlign: 'center' }}>{error}</p>}
             <Dashboard />
           </>
         )}
