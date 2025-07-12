@@ -7,6 +7,9 @@ export function AuthProvider({ children }) {
   const [apiKey, setApiKey] = useState('');
 
   const login = (username, apiKeyInput) => {
+    if (!username || !apiKeyInput) {
+      throw new Error('Username and API key are required');
+    }
     setUser({ username });
     setApiKey(apiKeyInput);
   };
