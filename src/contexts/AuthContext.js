@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
 
   const login = (username, email) => {
     setUser({ username, email });
-    // In a real app, you would get API key from backend after login
+    // In production, you'd get the API key from your backend
   };
 
   const logout = () => {
