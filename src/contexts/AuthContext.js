@@ -6,9 +6,9 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [apiKey, setApiKey] = useState('');
 
-  const login = (username, apiKeyInput) => {
-    setUser({ username });
-    setApiKey(apiKeyInput);
+  const login = (username, email) => {
+    setUser({ username, email });
+    // In a real app, you would get API key from backend after login
   };
 
   const logout = () => {
@@ -17,13 +17,18 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, apiKey, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        apiKey,
+        setApiKey,
+        login,
+        logout
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
-
+export const useAuth = () => useContext(AuthContext);
