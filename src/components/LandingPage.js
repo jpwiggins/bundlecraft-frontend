@@ -31,18 +31,20 @@ function LandingPage({ onSignIn }) {
     }
   };
 
+  const handleSubscription = (plan) => {
+    analytics.trackEvent('pricing_cta_clicked', { plan });
+    // For now, redirect to sign-up. In a real app, this would integrate with Stripe
+    alert(`🚀 ${plan.charAt(0).toUpperCase() + plan.slice(1)} subscription selected!\n\nRedirecting to sign-up...`);
+    onSignIn();
+  };
+
   return (
     <>
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background-color: #f8fafc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .header { background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 1rem 0; }
-        .nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #3b82f6; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { text-decoration: none; color: #64748b; font-weight: 500; }
-        .nav-links a:hover { color: #3b82f6; }
+
         .btn { padding: 0.75rem 1.5rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
         .btn-primary { background: #3b82f6; color: white; }
         .btn-primary:hover { background: #2563eb; }
@@ -89,28 +91,11 @@ function LandingPage({ onSignIn }) {
         .pricing-features li { padding: 0.5rem 0; color: #64748b; }
         .pricing-features li:before { content: "✓"; color: #10b981; font-weight: bold; margin-right: 0.5rem; }
         .footer { background: #1f2937; color: white; padding: 2rem 0; text-align: center; }
-        .status-indicator { display: inline-block; width: 10px; height: 10px; background: #10b981; border-radius: 50%; margin-right: 0.5rem; }
-        .api-status { background: #065f46; color: #10b981; padding: 1rem; border-radius: 0.5rem; margin: 2rem 0; border: 1px solid #10b981; }
+
       `}</style>
       <SEO />
 
-      {/* Header */}
-      <header className="header">
-        <div className="container">
-          <nav className="nav">
-            <div className="logo">🎯 BundleCraft</div>
-            <div className="nav-links">
-              <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' }); }}>Features</a>
-              <a href="#how-it-works" onClick={(e) => { e.preventDefault(); document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' }); }}>How It Works</a>
-              <a href="#pricing" onClick={(e) => { e.preventDefault(); document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }); }}>Pricing</a>
-              <a href="#demo" onClick={(e) => { e.preventDefault(); document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' }); }}>Demo</a>
-            </div>
-            <div>
-              <button className="btn btn-primary" onClick={onSignIn}>Get Started</button>
-            </div>
-          </nav>
-        </div>
-      </header>
+
 
       {/* Hero Section */}
       <section className="hero">
@@ -124,14 +109,7 @@ function LandingPage({ onSignIn }) {
         </div>
       </section>
 
-      {/* API Status */}
-      <section className="container">
-        <div className="api-status">
-          <strong>🚀 System Status:</strong>
-          <span className="status-indicator"></span> Production Ready & Deployed
-          <span className="status-indicator"></span> All Features Implemented & Ready
-        </div>
-      </section>
+
 
       {/* Features Section */}
       <section id="features" className="features">
@@ -257,7 +235,7 @@ function LandingPage({ onSignIn }) {
                 <li>Smart pricing & tagging</li>
                 <li>Copy/paste ready descriptions</li>
               </ul>
-              <button className="btn btn-primary" onClick={() => { analytics.trackEvent('pricing_cta_clicked', { plan: 'monthly' }); onSignIn(); }}>Start Monthly</button>
+              <button className="btn btn-primary" onClick={() => handleSubscription('monthly')}>Start Monthly</button>
             </div>
             <div className="pricing-card featured">
               <div className="pricing-badge">Save 20%</div>
@@ -270,7 +248,7 @@ function LandingPage({ onSignIn }) {
                 <li>Advanced analytics</li>
                 <li>Early access to new features</li>
               </ul>
-              <button className="btn btn-primary" onClick={() => { analytics.trackEvent('pricing_cta_clicked', { plan: 'yearly' }); onSignIn(); }}>Start Yearly</button>
+              <button className="btn btn-primary" onClick={() => handleSubscription('yearly')}>Start Yearly</button>
             </div>
           </div>
         </div>
