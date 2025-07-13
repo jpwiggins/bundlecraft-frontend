@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from 'react';
-import { fetchPrintifyProducts } from '../services/printifyService';
 import { generateEtsyExport } from '../utils/etsyFormatter';
 
 const BundleContext = createContext();
@@ -7,29 +6,8 @@ const BundleContext = createContext();
 export const BundleProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [bundles, setBundles] = useState([]);
-  const [apiKey, setApiKey] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const fetchProducts = async () => {
-    if (!apiKey) {
-      setError('Please enter your Printify API key');
-      return;
-    }
-    
-    setLoading(true);
-    setError('');
-    
-    try {
-      const productsData = await fetchPrintifyProducts(apiKey);
-      setProducts(productsData.map(p => ({ ...p, selected: false })));
-    } catch (err) {
-      setError('Failed to fetch products. Please check your API key.');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const createBundle = (bundleConfig) => {
     const selectedProducts = products.filter(p => p.selected);
@@ -61,12 +39,10 @@ export const BundleProvider = ({ children }) => {
     <BundleContext.Provider
       value={{
         products,
+        setProducts,
         bundles,
-        apiKey,
         loading,
         error,
-        setApiKey,
-        fetchProducts,
         createBundle,
         toggleProductSelection
       }}
