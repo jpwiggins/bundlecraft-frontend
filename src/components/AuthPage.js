@@ -28,19 +28,38 @@ const buttonStyles = {
   marginTop: 10,
 };
 
-function AuthPage() {
+function AuthPage({ onBack }) {
   const { login } = useAuth();
   const [username, setUsername] = useState('');
-  const [apiKey, setApiKey] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(username, apiKey);
+    login(username, email);
   };
 
   return (
     <div>
-      <h2 style={{ color: '#2563eb', marginBottom: 18 }}>Sign Up / Log In</h2>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 18 }}>
+        <button 
+          onClick={onBack}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#64748b',
+            fontSize: 16,
+            cursor: 'pointer',
+            marginRight: 12,
+            padding: '4px 8px',
+            borderRadius: 4,
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          ← Back
+        </button>
+        <h2 style={{ color: '#2563eb', margin: 0 }}>Sign Up / Log In</h2>
+      </div>
       <form onSubmit={handleSubmit} style={formStyles}>
         <div>
           <label style={labelStyles}>Username:</label>
@@ -54,14 +73,14 @@ function AuthPage() {
           />
         </div>
         <div>
-          <label style={labelStyles}>Printify API Key:</label>
+          <label style={labelStyles}>Email:</label>
           <input
-            type="text"
-            value={apiKey}
-            onChange={e => setApiKey(e.target.value)}
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             required
             style={inputStyles}
-            placeholder="Paste your Printify API key"
+            placeholder="Enter your email address"
           />
         </div>
         <button type="submit" style={buttonStyles}>Sign Up / Log In</button>
@@ -72,6 +91,3 @@ function AuthPage() {
 
 export default AuthPage;
 
- 
-  
-       
