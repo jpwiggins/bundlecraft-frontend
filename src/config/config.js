@@ -1,31 +1,28 @@
-// Configuration file for BundleCraft Frontend
-
 const config = {
-  // API Configuration
-  apiBaseUrl: process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000',
-  printifyApiUrl: process.env.REACT_APP_PRINTIFY_API_URL || 'https://api.printify.com/v1',
+  // API endpoints
+  apiBaseUrl: process.env.REACT_APP_API_BASE_URL || 'https://api.bundlecraft.app/v1',
+  printifyApiUrl: 'https://api.printify.com/v1',
   
-  // App Configuration
-  appName: process.env.REACT_APP_APP_NAME || 'BundleCraft',
-  appVersion: process.env.REACT_APP_APP_VERSION || '1.0.0',
+  // Stripe keys
+  stripePublishableKey: process.env.REACT_APP_STRIPE_PK || 'pk_test_51P...',
   
-  // Feature Flags
-  enableAnalytics: process.env.REACT_APP_ENABLE_ANALYTICS === 'true',
-  enableErrorReporting: process.env.REACT_APP_ENABLE_ERROR_REPORTING === 'true',
+  // Plans
+  plans: {
+    monthly: {
+      id: 'price_monthly',
+      price: 29.99,
+      name: 'Monthly Plan'
+    },
+    annual: {
+      id: 'price_annual',
+      price: 269.00,
+      name: 'Annual Plan'
+    }
+  },
   
-  // Environment
-  isDevelopment: process.env.NODE_ENV === 'development',
-  isProduction: process.env.NODE_ENV === 'production',
-  debugMode: process.env.REACT_APP_DEBUG_MODE === 'true',
-  
-  // URLs
-  websiteUrl: process.env.REACT_APP_WEBSITE_URL || 'https://bundlecraft.netlify.app',
-  
-  // Pricing
-  pricing: {
-    monthly: 29,
-    yearly: 279,
-    yearlyDiscount: 0.2
+  // Feature flags
+  features: {
+    demoMode: process.env.REACT_APP_DEMO_MODE === 'true'
   }
 };
 
