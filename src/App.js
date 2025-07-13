@@ -5,8 +5,8 @@ import { BundleProvider } from './contexts/BundleContext';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
-import DashboardPage from './pages/DashboardPage';
-import PricingPage from './pages/PricingPage';
+import DashboardPage from './pages/DashboardPage';  // Fixed import
+import PricingPage from './pages/PricingPage';      // Fixed import
 import './index.css';
 
 function App() {
