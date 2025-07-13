@@ -376,23 +376,24 @@
   .hero h1 {
     font-size: 2.5rem;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
+
   .dashboard-nav {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .pricing-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .pricing-card.featured {
     transform: none;
   }
+} 
 
 /* Footer Styles */
 .footer {
