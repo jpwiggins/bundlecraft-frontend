@@ -7,52 +7,59 @@ import LandingPage from './components/LandingPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import performanceMonitor from './utils/performance';
 
+const appStyles = {
+  fontFamily: 'Segoe UI, Roboto, Arial, sans-serif',
+  background: '#f8fafc',
+  minHeight: '100vh',
+  margin: 0,
+};
+
+const cardStyles = {
+  maxWidth: 600,
+  margin: '40px auto',
+  background: '#fff',
+  borderRadius: 12,
+  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+  padding: 32,
+};
+
 function MainApp() {
   const { user, logout } = useAuth();
   const [showSignIn, setShowSignIn] = useState(false);
 
   useEffect(() => {
+    // Initialize performance monitoring
     performanceMonitor.mark('app-start');
+    
+    // Report metrics after 5 seconds
     const timer = setTimeout(() => {
       performanceMonitor.reportMetrics();
     }, 5000);
+
     return () => clearTimeout(timer);
   }, []);
 
+  // Show dashboard if logged in, sign-in if requested, else landing page
   return (
-    <div style={{ fontFamily: 'Segoe UI, Roboto, Arial, sans-serif', background: '#f8fafc', minHeight: '100vh' }}>
+    <div style={appStyles}>
       <Navbar onSignIn={() => setShowSignIn(true)} />
-      
-      <main style={{ padding: '40px 5%', maxWidth: 1200, margin: '0 auto' }}>
+      <div style={cardStyles}>
         {!user ? (
           showSignIn ? (
-            <AuthPage />
+            <AuthPage onBack={() => setShowSignIn(false)} />
           ) : (
             <LandingPage onSignIn={() => setShowSignIn(true)} />
           )
         ) : (
           <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <p style={{ fontSize: 18, fontWeight: 500 }}>👋 Hello, {user.username}!</p>
-              <button
-                onClick={logout}
-                style={{
-                  background: '#ef4444',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: 6,
-                  padding: '8px 20px',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                Logout
-              </button>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+              <p style={{ fontWeight: 500 }}>Hello, {user.username}! You are logged in.</p>
+              <button onClick={logout} style={{ background: '#ef4444', color: '#fff', border: 'none', borderRadius: 6, padding: '6px 16px', cursor: 'pointer' }}>Logout</button>
             </div>
             <Dashboard />
           </>
         )}
-      </main>
+      </div>
     </div>
   );
 }
