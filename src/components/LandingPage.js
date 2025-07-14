@@ -34,12 +34,7 @@ function LandingPage({ onSignIn }) {
     }
   };
 
-  const handleSubscription = (plan) => {
-    analytics.trackEvent('pricing_cta_clicked', { plan });
-    // For now, redirect to sign-up. In a real app, this would integrate with Stripe
-    alert(`🚀 ${plan.charAt(0).toUpperCase() + plan.slice(1)} subscription selected!\n\nRedirecting to sign-up...`);
-    onSignIn();
-  };
+
 
   return (
     <>
@@ -240,7 +235,10 @@ function LandingPage({ onSignIn }) {
                 <li>Copy/paste ready descriptions</li>
                 <li>95% customer assistance</li>
               </ul>
-              <button className="btn btn-primary" onClick={() => handleSubscription('monthly')}>Start Monthly</button>
+              <stripe-buy-button
+                buy-button-id="buy_btn_1Rku7PBlupvf8JxwHed665iN"
+                publishable-key="pk_live_51RagoSBlupvf8JxwMmt3eNsJzQJZFhkIR32grr3fOj2siLuK7GYNXUf4Bj2jp5QKEMuq8L2cTmQpDPsNlVBBDx5Q00YTWgQIWg"
+              ></stripe-buy-button>
             </div>
             <div className="pricing-card featured">
               <div className="pricing-badge">Save $90/year</div>
@@ -258,7 +256,10 @@ function LandingPage({ onSignIn }) {
                 <li>Bulk bundle operations</li>
                 <li>Custom bundle templates</li>
               </ul>
-              <button className="btn btn-primary" onClick={() => handleSubscription('yearly')}>Start Yearly</button>
+              <stripe-buy-button
+                buy-button-id="buy_btn_1RktRUBlupvf8JxwkvROZGuc"
+                publishable-key="pk_live_51RagoSBlupvf8JxwMmt3eNsJzQJZFhkIR32grr3fOj2siLuK7GYNXUf4Bj2jp5QKEMuq8L2cTmQpDPsNlVBBDx5Q00YTWgQIWg"
+              ></stripe-buy-button>
             </div>
           </div>
         </div>
