@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';  // Fixed import
 import PricingPage from './pages/PricingPage';      // Fixed import
+import SubscriptionPage from './pages/SubscriptionPage';
 import './index.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="login" element={<AuthPage />} />
               <Route path="pricing" element={<PricingPage />} />
+              <Route path="/subscribe" element={<SubscriptionPage />} />
               <Route path="dashboard" element={<DashboardPage />} />
             </Route>
           </Routes>
