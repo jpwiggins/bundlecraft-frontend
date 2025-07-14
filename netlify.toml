@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
   publish = "build"
+  node_version = "18.19.0"  # ✅ Add this
 
 [[redirects]]
   from = "/*"
