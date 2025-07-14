@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useAuth } from '../contexts/AuthContext';
 import { getPricingPlans } from '../services/stripeService';
 import CheckoutForm from '../components/payment/CheckoutForm';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
+import LoadingSpinner from './LoadingSpinner';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
