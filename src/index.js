@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/tailwind.generated.css'; // Add this line
+import './styles/tailwind.css'; // ✅ if this is the correct file
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
