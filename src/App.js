@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import performanceMonitor from './utils/performance';
+import './assets/styles/main.css';
 
 const appStyles = {
   fontFamily: 'Segoe UI, Roboto, Arial, sans-serif',

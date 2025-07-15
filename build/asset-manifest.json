@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/bundlecraft-frontend/static/css/main.891ab16a.css",
+    "main.css": "/bundlecraft-frontend/static/css/main.f5a8098f.css",
     "main.js": "/bundlecraft-frontend/static/js/main.a0b1548f.js",
     "index.html": "/bundlecraft-frontend/index.html",
-    "main.891ab16a.css.map": "/bundlecraft-frontend/static/css/main.891ab16a.css.map",
+    "main.f5a8098f.css.map": "/bundlecraft-frontend/static/css/main.f5a8098f.css.map",
     "main.a0b1548f.js.map": "/bundlecraft-frontend/static/js/main.a0b1548f.js.map"
   },
   "entrypoints": [
-    "static/css/main.891ab16a.css",
+    "static/css/main.f5a8098f.css",
     "static/js/main.a0b1548f.js"
   ]
 }
